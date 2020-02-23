@@ -5,10 +5,13 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "server": "node server/index.js",
+    "start": "concurrently \"npm run serve\" \"npm run server\""
   },
   "dependencies": {
     "core-js": "^3.6.4",
+    "element-ui": "^2.4.5",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.2",
     "vue-property-decorator": "^8.3.0"
@@ -22,14 +25,20 @@
     "@vue/cli-service": "~4.2.0",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^5.0.1",
+    "concurrently": "^5.1.0",
     "eslint": "^6.7.2",
+    "eslint-plugin-html": "^6.0.0",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^6.1.2",
+    "fs-extra": "^8.1.0",
     "lint-staged": "^9.5.0",
+    "multiparty": "^4.2.1",
     "node-sass": "^4.12.0",
     "prettier": "^1.19.1",
     "sass-loader": "^8.0.2",
+    "spark-md5": "^3.0.0",
     "typescript": "~3.7.5",
+    "vue-cli-plugin-element": "^1.0.1",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
@@ -40,9 +49,7 @@
     "extends": [
       "plugin:vue/essential",
       "eslint:recommended",
-      "@vue/typescript/recommended",
-      "@vue/prettier",
-      "@vue/prettier/@typescript-eslint"
+      "@vue/typescript/recommended"
     ],
     "parserOptions": {
       "ecmaVersion": 2020
@@ -57,7 +64,7 @@
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
-    "*.{js,jsx,vue,ts,tsx}": [
+    "*.{vue,ts,tsx}": [
       "vue-cli-service lint",
       "git add"
     ]
